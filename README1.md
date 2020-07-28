@@ -14,10 +14,12 @@ Trip (traveller, location, date, rate_location)
 
 Restaurant (location, name, address, cuisine)
 * belongs to a location
+* belongs to a rate_restaurant
 * has many trips through rate_restaurant
 
 Landmark (location, name, address, description, best_season_to_visit)
 * belongs to a location
+* belongs to a rate_landmark
 * has many trips through rate_landmark
 
 Location (city, country, info)
