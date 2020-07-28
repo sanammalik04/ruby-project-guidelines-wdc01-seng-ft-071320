@@ -10,7 +10,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_28_184818) do
+ActiveRecord::Schema.define(version: 2020_07_28_194826) do
+
+  create_table "landmarks", force: :cascade do |t|
+    t.string "name"
+    t.integer "location_id"
+    t.string "address"
+    t.string "best_season_to_visit"
+    t.text "description"
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string "city"
+    t.string "country"
+    t.text "info"
+  end
+
+  create_table "rate_landmarks", force: :cascade do |t|
+    t.integer "landmark_id"
+    t.integer "trip_id"
+    t.integer "rating"
+  end
+
+  create_table "rate_restaurants", force: :cascade do |t|
+    t.integer "restaurant_id"
+    t.integer "trip_id"
+    t.integer "rating"
+  end
+
+  create_table "restaurants", force: :cascade do |t|
+    t.string "name"
+    t.string "address"
+    t.string "cuisine"
+    t.integer "location_id"
+  end
 
   create_table "travellers", force: :cascade do |t|
     t.string "username"
@@ -21,8 +54,6 @@ ActiveRecord::Schema.define(version: 2020_07_28_184818) do
     t.integer "location_id"
     t.date "date"
     t.integer "rate_location"
-    t.integer "rate_restaurant_id"
-    t.integer "rate_landmark_id"
   end
 
 end

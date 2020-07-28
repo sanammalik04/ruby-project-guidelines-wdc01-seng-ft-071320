@@ -5,26 +5,22 @@ Traveller Tips is a user-driven app for travel enthusiasts, who want to share th
 Traveller (username)
 * has many trips
 * has many locations through trips
-* has many restaurants through trips, and rate_restaurant
-* has many landmarks through trips, and rate_landmark
 
-Trip (traveller, location, rate_restaurant, rate_landmark, date, rate_location)
+Trip (traveller, location, date, rate_location)
 * belongs to a traveller
 * belongs to a location
 * has many restaurants through location
 * has many landmarks through location
 
-Restaurant (location, name, rating, cuisine)
+Restaurant (location, name, address, cuisine)
 * belongs to a location
-* has many travellers through location, and trip
 * has many trips through rate_restaurant
 
-Landmark (location, name, rating, description, best_season_to_visit)
+Landmark (location, name, address, description, best_season_to_visit)
 * belongs to a location
-* has many travellers through location, and trip
 * has many trips through rate_landmark
 
-Location (name, rating, trip, traveller, restaurant, general_info, landmark)
+Location (city, country, info)
 * has many trips
 * has many travellers, through trip
 * has many restaurants
