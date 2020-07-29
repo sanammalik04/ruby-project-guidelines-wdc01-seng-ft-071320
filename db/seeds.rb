@@ -1,6 +1,7 @@
 require 'pry'
 
 Traveller.destroy_all
+Trip.destroy_all
 Location.destroy_all
 Restaurant.destroy_all
 Landmark.destroy_all
