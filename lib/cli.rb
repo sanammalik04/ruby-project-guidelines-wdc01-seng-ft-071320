@@ -16,9 +16,8 @@ class Cli
     def add_trip(response = prompt.select("Hello #{self.traveller.username}! What would you like to do?", %w(add_a_trip explore_a_trip?)))
         if response == "add_a_trip"
             new_trip = Trip.new(traveller: self.traveller)
-            choices = {"Scorpion" => 1, "Kano" => 2, "Jax" => 3}
-            given_location = prompt.select("What location?", choices)
-            
+            given_location = prompt.select("What location?", Location.list)
+            binding.pry
             # country = prompt.ask("Which country did you travel to?")
             # city = prompt.ask("Nice! Which city did you go to?")
             # info = prompt.ask("Sweet! Would you like to tell us about your experience in #{city}?")

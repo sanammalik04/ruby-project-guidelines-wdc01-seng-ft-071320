@@ -28,20 +28,14 @@ class Location < ActiveRecord::Base
     end
 
     def self.list
-        # ids = Location.all.map do |location|   #array of integers
-        #     location.id end
-
-        # city_country = Location.all.map do |location|     #array of strings
-        #     location.city + "_" + location.country
-        # end
         
-        # hash = Hash[city_country.collect { |cc| [cc, ""] } ]
-
+        # list_of_hashes = Location.all.map do |loc_obj|
+        #     {loc_obj.id => "#{loc_obj.city}, #{loc_obj.country}"} 
         
         list_of_hashes = Location.all.map do |loc_obj|
-            {loc_obj.id: "#{loc_obj.city}_#{loc_obj.country}"} 
+            {"#{loc_obj.city}, #{loc_obj.country}" => loc_obj.id} 
         end
-        list_of_hashes.inject(:merge!)
+        list_of_hashes.inject(:merge!)    
     end
 
 
