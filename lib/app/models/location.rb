@@ -27,10 +27,21 @@ class Location < ActiveRecord::Base
         highest_rated
     end
 
-    def self.location_list
-        
+    def self.list
+        # ids = Location.all.map do |location|   #array of integers
+        #     location.id end
 
-    
+        # city_country = Location.all.map do |location|     #array of strings
+        #     location.city + "_" + location.country
+        # end
+        
+        # hash = Hash[city_country.collect { |cc| [cc, ""] } ]
+
+        
+        list_of_hashes = Location.all.map do |loc_obj|
+            {loc_obj.id: "#{loc_obj.city}_#{loc_obj.country}"} 
+        end
+        list_of_hashes.inject(:merge!)
     end
 
 
