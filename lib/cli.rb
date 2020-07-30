@@ -16,19 +16,21 @@ class Cli
     def add_trip(response = prompt.select("Hello #{self.traveller.username}! What would you like to do?", %w(add_a_trip explore_a_trip?)))
         if response == "add_a_trip"
             new_trip = Trip.new(traveller: self.traveller)
-            given_location = prompt.select("What location?", Location.list)
-            binding.pry
-            # country = prompt.ask("Which country did you travel to?")
-            # city = prompt.ask("Nice! Which city did you go to?")
-            # info = prompt.ask("Sweet! Would you like to tell us about your experience in #{city}?")
-            
-            # new_trip.date = prompt.ask("What year were you there?")
-            # new_trip.rate_location = prompt.ask("Please rate #{city} from 1 to 10, with 10 being the best?")
-            # new_trip.location = Location.find_or_create_by(country: country, city: city, info: info) 
-        #else
-            #call method for explore a trip
+            new_trip.location_id = prompt.select("What location?", Location.list)
+            new_trip.date = prompt.ask("What year were you there?")
+            new_trip.rate_location = prompt.ask("Please rate this location from 1 to 10, with 10 being the best?")
+            new_trip.save
+        else
+            explore_trip 
         end 
     end
+    
+    def explore_trip
+        location_lookup = prompt.select("What location?", Location.list)
+        puts 
+    
+    end
+
 
 
 
