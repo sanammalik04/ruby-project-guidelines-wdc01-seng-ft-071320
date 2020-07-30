@@ -41,7 +41,7 @@ class Location < ActiveRecord::Base
         list_of_hashes = Location.all.map do |loc_obj|
             {loc_obj.id: "#{loc_obj.city}_#{loc_obj.country}"} 
         end
-        list_of_hashes.inject(:merge!)
+        list = list_of_hashes.inject(:merge!)
     end
 
 
