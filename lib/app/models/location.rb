@@ -27,4 +27,11 @@ class Location < ActiveRecord::Base
         highest_rated
     end
 
+    def self.location_list
+        
+
+    
+    end
+
+
 end
