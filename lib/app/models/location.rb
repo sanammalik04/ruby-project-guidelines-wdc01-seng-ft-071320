@@ -28,15 +28,11 @@ class Location < ActiveRecord::Base
     end
 
     def self.list
-        
-        # list_of_hashes = Location.all.map do |loc_obj|
-        #     {loc_obj.id => "#{loc_obj.city}, #{loc_obj.country}"} 
-        
         list_of_hashes = Location.all.map do |loc_obj|
             {"#{loc_obj.city}, #{loc_obj.country}" => loc_obj.id} 
         end
+        list_of_hashes << {"Add location" => 0}
         list_of_hashes.inject(:merge!)    
     end
-
 
 end
