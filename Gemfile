@@ -6,4 +6,4 @@ gem "sinatra-activerecord"
 gem "sqlite3", "~>1.4.2"
 gem "pry"
 gem "require_all"
-#gem "tty-prompt" #cannot install, why?
+gem "tty-prompt" 
