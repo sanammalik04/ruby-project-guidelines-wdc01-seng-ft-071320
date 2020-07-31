@@ -33,12 +33,12 @@ class Cli
             new_trip.rate_location = prompt.ask("Please rate this location from 1 to 10, with 10 being the best?")
             new_trip.save
             new_trip_id = new_trip.id
-            rate_r_l = prompt.select("Great! Would you like to rate a restaurant, or a landmark?", %w(rate_a_restaurant rate_a_landmark))
-            if rate_r_l == "rate_a_restaurant"
-                rate_a_restaurant(new_trip_id)
-            else
-                rate_a_landmark(new_trip_id)
-            end
+            # rate_r_l = prompt.select("Great! Would you like to rate a restaurant, or a landmark?", %w(rate_a_restaurant rate_a_landmark))
+            # if rate_r_l == "rate_a_restaurant"
+            #     rate_a_restaurant(new_trip_id)
+            # else
+            #     rate_a_landmark(new_trip_id)
+            # end
         else
             explore_trip 
         end 
@@ -48,7 +48,7 @@ class Cli
         location_lookup = prompt.select("What location would you like to know more about?", Location.list)
         selected_location = Location.all.find {|location| location.id == location_lookup}
         prompt.ask("\n#{selected_location.info} \nThis city has an average rating of #{selected_location.average_rating}. \nPress enter to continue")
-        restaurant_or_landmark = prompt.select("Would you like to see a list of restaurants or landmarks with their average rating, in this location?", %w(restaurants landmarks))
+        restaurant_or_landmark = prompt.select("Would you like to see a list of restaurants or landmarks at this location?", %w(restaurants landmarks))
         restaurants_list(selected_location, restaurant_or_landmark)
     end
 
