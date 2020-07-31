@@ -7,7 +7,7 @@ class Restaurant < ActiveRecord::Base
         restaurants = RateRestaurant.all.select {|rr| rr.restaurant == self}
         rating = restaurants.map {|rr| rr.rating} 
         average_rating = rating.sum.to_f / rating.count
-        average_rating.to_f
+        average_rating.to_f.round(2)
     end
 
     def has_been_rated?

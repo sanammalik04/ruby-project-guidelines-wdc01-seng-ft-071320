@@ -101,7 +101,7 @@ class Cli
 
     def rate_a_restaurant(new_trip_id, location_id)
         new_rate_restaurant = RateRestaurant.new(trip_id: new_trip_id)
-        selected_restaurant = prompt.select("What location?", Restaurant.list(location_id))
+        selected_restaurant = prompt.select("What restaurant?", Restaurant.list(location_id))
             if selected_restaurant != 0
                 new_rate_restaurant.restaurant_id = selected_restaurant
             else 
@@ -116,7 +116,7 @@ class Cli
         address = prompt.ask("Nice! Please provide the address")
         cuisine = prompt.ask("What was the cuisine?")
         new_restaurant = Restaurant.create(name: name, address: address, cuisine: cuisine, location_id: location_id)
-        new_location.id
+        new_restaurant.id
     end
 
 
