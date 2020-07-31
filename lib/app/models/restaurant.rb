@@ -18,7 +18,14 @@ class Restaurant < ActiveRecord::Base
     end
     end
 
-
+    def self.list(location_id)
+        list = Restaurant.all.select {|restaurant| restaurant.location_id == location_id}
+        restaurant_hashes = list.map do |restaurant|
+            {"#{restaurant.name}" => restaurant.id} 
+        end
+        restaurant_hashes   << {"Add restaurant" => 0}
+        restaurant_hashes.inject(:merge!)   
+    end
 
 
 end

@@ -35,7 +35,7 @@ class Cli
             new_trip_id = new_trip.id
             rate_r_l = prompt.select("Great! Would you like to rate a restaurant, or a landmark?", %w(rate_a_restaurant rate_a_landmark))
             if rate_r_l == "rate_a_restaurant"
-                rate_a_restaurant(new_trip_id)
+                rate_a_restaurant(new_trip_id, location_id)
             else
                 rate_a_landmark(new_trip_id)
             end
@@ -99,9 +99,26 @@ class Cli
     end
 
 
-    def rate_a_restaurant(new_trip_id)
-        RateRestaurant.create(restaurant: , trip.id: new_trip_id, rating: rating)
+    def rate_a_restaurant(new_trip_id, location_id)
+        new_rate_restaurant = RateRestaurant.new(trip_id: new_trip_id)
+        selected_restaurant = prompt.select("What location?", Restaurant.list(location_id))
+            if selected_restaurant != 0
+                new_rate_restaurant.restaurant_id = selected_restaurant
+            else 
+                new_rate_restaurant.restaurant_id = add_new_restaurant(location_id)
+            end
+        new_rate_restaurant.rating = prompt.ask("Please rate this restaurant from 1 to 10, with 10 being the best")
+        new_rate_restaurant.save
     end
+
+    def add_new_restaurant(location_id)
+        name = prompt.ask("What's the name of the restaurant you want to rate?")
+        address = prompt.ask("Nice! Please provide the address")
+        cuisine = prompt.ask("What was the cuisine?")
+        new_restaurant = Restaurant.create(name: name, address: address, cuisine: cuisine, location_id: location_id)
+        new_location.id
+    end
+
 
     def rate_a_landmark(new_trip_id)
     end
