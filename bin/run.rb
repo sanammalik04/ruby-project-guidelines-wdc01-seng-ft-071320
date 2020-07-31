@@ -5,6 +5,6 @@ cli.start_app
 
 puts Location.list
 
-binding.pry
+#binding.pry
 
 puts "HELLO WORLD"

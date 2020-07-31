@@ -12,14 +12,13 @@ class Landmark < ActiveRecord::Base
 
     def has_been_rated?
         if RateLandmark.all.find {|rl| rl.landmark == self}
-        return true
-    else 
-        return false
-    end
+            return true
+        else 
+            return false
+        end
     end
 
-
-  
+    
 
 
 end

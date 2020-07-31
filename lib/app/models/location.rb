@@ -5,11 +5,13 @@ class Location < ActiveRecord::Base
     has_many :landmarks
 
     def landmarks
-        Landmark.all.select {|landmark| landmark.location == self} 
+        list = Landmark.all.select {|landmark| landmark.location == self}
+        list.sort 
     end
 
     def restaurants
-        Restaurant.all.select {|restaurant| restaurant.location == self}
+        list = Restaurant.all.select {|restaurant| restaurant.location == self}
+        list.sort
     end
 
     def highest_rated_landmark
@@ -35,4 +37,10 @@ class Location < ActiveRecord::Base
         list_of_hashes.inject(:merge!)    
     end
 
+    def average_rating
+        ratings = self.trips.map do |trip|
+            trip.rate_location end
+            average = ratings.sum.to_f / ratings.count
+            average.to_f.round(2)
+    end
 end

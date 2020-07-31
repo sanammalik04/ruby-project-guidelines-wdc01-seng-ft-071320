@@ -11,7 +11,10 @@ class Trip < ActiveRecord::Base
         RateRestaurant.create(restaurant: added_restaurant, trip: self, rating: rating)
     end
 
-    
+    def add_landmark_rating(name, address, best_season_to_visit, description, rating)
+        added_landmark = Landmark.find_or_create_by(name: name, address: address, best_season_to_visit: best_season_to_visit, location: self.location, description: description)
+        RateLandmark.create(landmark: added_landmark, trip: self, rating: rating)
+    end
 
 
 
